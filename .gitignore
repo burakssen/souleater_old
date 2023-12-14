@@ -4,3 +4,5 @@ cmake-*
 .vscode
 bin
 resources
+src/raygui
+src/rres
