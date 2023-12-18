@@ -40,6 +40,11 @@ void Game::init()
     this->scene_manager->setCurrentScene("start");
     this->scene_manager->setLoadingScene("loading");
     this->scene_manager->init();
+
+    this->resource_manager = &ResourceManager::getInstance();
+    this->resource_manager->loadResources();
+    AnimatedTextureResource *texture_resource = static_cast<AnimatedTextureResource *>(this->resource_manager->getResource("player"));
+    this->texture = texture_resource->getTexture2D();
 }
 
 void Game::draw()
@@ -48,6 +53,8 @@ void Game::draw()
     ClearBackground(RAYWHITE);
     if (this->scene_manager != nullptr)
         this->scene_manager->draw();
+
+    DrawTexture(*this->texture, 0, 0, WHITE);
     EndDrawing();
 }
 

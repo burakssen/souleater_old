@@ -1,16 +1,20 @@
 #pragma once
 
 #include <raygui.h>
+
+#include <rres-raylib.h>
+
 #include <iostream>
 
 #include "../Log/Log.h"
-
-#include <rres-raylib.h>
 
 #include "../SceneManager/SceneManager.h"
 #include "Scenes/StartScene/StartScene.h"
 #include "Scenes/GameScene/GameScene.h"
 #include "Scenes/LoadingScene/LoadingScene.h"
+
+#include "../ResourceManager/ResourceManager.h"
+#include "../ResourceManager/Resource/Texture2DResource/Texture2DResource.h"
 
 class Game
 {
@@ -41,4 +45,6 @@ private:
     bool button_pressed = false;
 
     SceneManager *scene_manager = nullptr;
+    ResourceManager *resource_manager = nullptr;
+    Texture2D *texture = nullptr;
 };
