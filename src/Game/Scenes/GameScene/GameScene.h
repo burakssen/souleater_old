@@ -2,6 +2,8 @@
 
 #include <raygui.h>
 
+#include "../../../Entities/Player/Player.h"
+
 #include "../../../SceneManager/Scene/Scene.h"
 
 #include "../../../Log/Log.h"
@@ -20,4 +22,6 @@ public:
 private:
     Texture2D background;
     Font font;
+
+    std::vector<Entity *> m_entities;
 };
