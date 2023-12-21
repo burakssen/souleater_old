@@ -58,8 +58,9 @@ void ResourceManager::generateResource(const YAML::Node &resource_node)
             auto texture_type = resource_node["textureType"].as<std::string>();
             if (texture_type == "AnimatedTexture")
             {
-                auto *texture_resource = new AnimatedTextureResource();
-                texture_resource->setNumberOfAnimations(resource_node["numberOfAnimations"].as<int>());
+                auto *animation_resource = new AnimatedTextureResource();
+                animation_resource->setNumberOfAnimations(resource_node["numberOfAnimations"].as<int>());
+
                 for (auto ani : resource_node["animations"])
                 {
                     Animation animation;
@@ -69,10 +70,11 @@ void ResourceManager::generateResource(const YAML::Node &resource_node)
                     animation.setFrom(Vector2{ani["from"]["x"].as<float>(), ani["from"]["y"].as<float>()});
                     animation.setTo(Vector2{ani["to"]["x"].as<float>(), ani["to"]["y"].as<float>()});
                     animation.setType((AnimationType)ani["type"].as<int>());
-                    texture_resource->addAnimation(ani["name"].as<std::string>(), animation);
+                    animation_resource->addAnimation(ani["name"].as<std::string>(), animation);
                 }
-                texture_resource->setTexture2D(texture);
-                this->m_resources[resource_name] = texture_resource;
+
+                animation_resource->setTexture2D(texture);
+                this->m_resources[resource_name] = animation_resource;
                 return;
             }
         }
