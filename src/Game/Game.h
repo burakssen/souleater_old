@@ -47,4 +47,6 @@ private:
     SceneManager *scene_manager = nullptr;
     ResourceManager *resource_manager = nullptr;
     Texture2D *texture = nullptr;
+    Shader shader;
+    RenderTexture2D render_texture;
 };

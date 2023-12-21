@@ -20,6 +20,8 @@ void Game::run()
 {
     while (!WindowShouldClose())
     {
+        if (this->scene_manager->getCurrentScene() == nullptr)
+            break;
         this->draw();
         this->update();
     }
@@ -32,6 +34,9 @@ void Game::init()
     SetTargetFPS(120);
     Log::info("Game initialized");
 
+    this->resource_manager = &ResourceManager::getInstance();
+    this->resource_manager->loadResources();
+
     this->scene_manager = &SceneManager::GetInstance();
     this->scene_manager->addScene("start", new StartScene());
     this->scene_manager->addScene("game", new GameScene());
@@ -40,21 +45,16 @@ void Game::init()
     this->scene_manager->setCurrentScene("start");
     this->scene_manager->setLoadingScene("loading");
     this->scene_manager->init();
-
-    this->resource_manager = &ResourceManager::getInstance();
-    this->resource_manager->loadResources();
-    AnimatedTextureResource *texture_resource = static_cast<AnimatedTextureResource *>(this->resource_manager->getResource("player"));
-    this->texture = texture_resource->getTexture2D();
 }
 
 void Game::draw()
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
+
     if (this->scene_manager != nullptr)
         this->scene_manager->draw();
 
-    DrawTexture(*this->texture, 0, 0, WHITE);
     EndDrawing();
 }
 
