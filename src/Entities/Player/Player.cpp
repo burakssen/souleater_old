@@ -14,6 +14,7 @@ void Player::init()
 {
     TransformComponent *transform_component = this->addComponent<TransformComponent>();
     AnimationComponent *animation_component = this->addComponent<AnimationComponent>();
+
     AnimatedTextureResource *animation_resource = static_cast<AnimatedTextureResource *>(this->m_resource_manager->getResource("player"));
     if (animation_resource != nullptr)
     {
@@ -39,12 +40,14 @@ void Player::draw()
     EndShaderMode();
 }
 
-void Player::update()
+void Player::handleEvents()
 {
-    this->getComponent<TextureComponent>()->update();
-}
+    TransformComponent *transform_component = this->getComponent<TransformComponent>();
+    if (transform_component == nullptr)
+        return;
 
-void Player::destroy()
-{
-    this->getComponent<TextureComponent>()->destroy();
+    if (IsKeyDown(KEY_W))
+    {
+        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y - 1});
+    }
 }

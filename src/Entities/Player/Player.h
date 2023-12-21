@@ -12,9 +12,8 @@ public:
     ~Player();
 
     void init() override;
-    void update() override;
     void draw() override;
-    void destroy() override;
+    void handleEvents() override;
 
 private:
     Shader shader;
