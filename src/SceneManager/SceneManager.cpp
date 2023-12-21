@@ -51,6 +51,11 @@ void SceneManager::changeScene(const std::string &scene_name)
     this->current_scene->init();
 }
 
+Scene *SceneManager::getCurrentScene()
+{
+    return this->current_scene;
+}
+
 void SceneManager::quitGame()
 {
     if (this->current_scene != nullptr)

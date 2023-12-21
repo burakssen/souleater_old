@@ -34,6 +34,7 @@ public:
 
     void setCurrentScene(const std::string &scene_name);
     void changeScene(const std::string &scene_name);
+    Scene *getCurrentScene();
     void quitGame();
 
 private:
