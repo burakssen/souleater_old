@@ -26,7 +26,6 @@ void Animation::init()
 
 void Animation::destroy()
 {
-    this->m_animation_list.clear();
 }
 
 void Animation::setNumberOfFrames(int number_of_frames)
@@ -59,11 +58,6 @@ void Animation::setType(AnimationType type)
     this->m_type = type;
 }
 
-void Animation::addAnimation(const std::string &animation_name, Rectangle animation)
-{
-    this->m_animation_list[animation_name] = animation;
-}
-
 int Animation::getNumberOfFrames()
 {
     return this->m_number_of_frames;
@@ -92,11 +86,6 @@ Vector2 Animation::getTo()
 AnimationType Animation::getType()
 {
     return this->m_type;
-}
-
-Rectangle Animation::getAnimation(const std::string &animation_name)
-{
-    return this->m_animation_list[animation_name];
 }
 
 AnimatedTextureResource::AnimatedTextureResource()
@@ -141,4 +130,9 @@ int AnimatedTextureResource::getNumberOfAnimations()
 Animation AnimatedTextureResource::getAnimation(const std::string &animation_name)
 {
     return this->m_animations[animation_name];
+}
+
+std::map<std::string, Animation> AnimatedTextureResource::getAnimations()
+{
+    return this->m_animations;
 }

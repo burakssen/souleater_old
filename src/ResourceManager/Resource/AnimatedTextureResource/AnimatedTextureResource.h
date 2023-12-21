@@ -27,7 +27,6 @@ public:
     void setFrom(Vector2 from);
     void setTo(Vector2 to);
     void setType(AnimationType type);
-    void addAnimation(const std::string &animation_name, Rectangle animation);
 
     int getNumberOfFrames();
     int getWidth();
@@ -44,7 +43,6 @@ private:
     Vector2 m_from;
     Vector2 m_to;
     AnimationType m_type;
-    std::map<std::string, Rectangle> m_animation_list;
 };
 
 class AnimatedTextureResource : public Texture2DResource
@@ -61,6 +59,7 @@ public:
 
     int getNumberOfAnimations();
     Animation getAnimation(const std::string &animation_name);
+    std::map<std::string, Animation> getAnimations();
 
 private:
     int m_number_of_animations;
