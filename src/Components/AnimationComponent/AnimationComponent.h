@@ -25,7 +25,7 @@ private:
 
     int m_frame = 0;
     int m_frame_counter = 0;
-    int m_frame_speed = 2;
+    float m_frame_speed = 10;
     bool m_is_playing = true;
 
     Animation *m_current_animation = nullptr;
