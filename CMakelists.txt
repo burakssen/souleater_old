@@ -88,23 +88,15 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION ${EXECUTABLE_OUTPUT_PATH})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(${PROJECT_NAME} ${SOURCES}
-        src/ResourceManager/ResourceManager.cpp
-        src/ResourceManager/ResourceManager.h
-        src/ResourceManager/Resource/Resource.cpp
-        src/ResourceManager/Resource/Resource.h
-        src/ResourceManager/Resource/Texture2DResource/Texture2DResource.cpp
-        src/ResourceManager/Resource/Texture2DResource/Texture2DResource.h
-        src/ResourceManager/Resource/AnimatedTextureResource/AnimatedTextureResource.cpp
-        src/ResourceManager/Resource/AnimatedTextureResource/AnimatedTextureResource.h)
+add_executable(${PROJECT_NAME} ${SOURCES})
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib yaml-cpp)
 
 # Web Configurations
-if (${PLATFORM} STREQUAL "Web")
+# if (${PLATFORM} STREQUAL "Web")
     # Tell Emscripten to build an example.html file.
-    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-endif()
+#    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+# endif()
 
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
 if (APPLE)
