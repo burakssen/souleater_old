@@ -20,8 +20,8 @@ public:
     void destroy() override;
 
 private:
-    Texture2D background;
-    Font font;
+    Texture2D m_background;
+    Font m_font;
 
     std::vector<Entity *> m_entities;
 };

@@ -38,7 +38,7 @@ public:
     void quitGame();
 
 private:
-    Scene *current_scene = nullptr;
-    Scene *loading_scene = nullptr;
+    Scene *m_current_scene = nullptr;
+    Scene *m_loading_scene = nullptr;
     std::map<std::string, Scene *> scenes;
 };

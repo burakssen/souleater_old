@@ -20,7 +20,7 @@ void Game::run()
 {
     while (!WindowShouldClose())
     {
-        if (this->scene_manager->getCurrentScene() == nullptr)
+        if (this->m_scene_manager->getCurrentScene() == nullptr)
             break;
         this->draw();
         this->update();
@@ -30,21 +30,21 @@ void Game::run()
 void Game::init()
 {
     // Log::stopRaylibLogging();
-    InitWindow(this->window_width, this->window_height, "Soul Eater");
+    InitWindow(this->m_window_width, this->m_window_height, "Soul Eater");
     SetTargetFPS(120);
     Log::info("Game initialized");
 
-    this->resource_manager = &ResourceManager::getInstance();
-    this->resource_manager->loadResources();
+    this->m_resource_manager = &ResourceManager::getInstance();
+    this->m_resource_manager->loadResources();
 
-    this->scene_manager = &SceneManager::GetInstance();
-    this->scene_manager->addScene("start", new StartScene());
-    this->scene_manager->addScene("game", new GameScene());
-    this->scene_manager->addScene("loading", new LoadingScene());
+    this->m_scene_manager = &SceneManager::GetInstance();
+    this->m_scene_manager->addScene("start", new StartScene());
+    this->m_scene_manager->addScene("game", new GameScene());
+    this->m_scene_manager->addScene("loading", new LoadingScene());
 
-    this->scene_manager->setCurrentScene("start");
-    this->scene_manager->setLoadingScene("loading");
-    this->scene_manager->init();
+    this->m_scene_manager->setCurrentScene("start");
+    this->m_scene_manager->setLoadingScene("loading");
+    this->m_scene_manager->init();
 }
 
 void Game::draw()
@@ -52,22 +52,22 @@ void Game::draw()
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    if (this->scene_manager != nullptr)
-        this->scene_manager->draw();
+    if (this->m_scene_manager != nullptr)
+        this->m_scene_manager->draw();
 
     EndDrawing();
 }
 
 void Game::update()
 {
-    if (this->scene_manager != nullptr)
-        this->scene_manager->update();
+    if (this->m_scene_manager != nullptr)
+        this->m_scene_manager->update();
 }
 
 void Game::destroy()
 {
-    if (this->scene_manager != nullptr)
-        this->scene_manager->destroy();
+    if (this->m_scene_manager != nullptr)
+        this->m_scene_manager->destroy();
 
     CloseWindow();
 }

@@ -18,20 +18,20 @@ SceneManager &SceneManager::GetInstance()
 
 void SceneManager::init()
 {
-    if (this->current_scene != nullptr)
-        this->current_scene->init();
+    if (this->m_current_scene != nullptr)
+        this->m_current_scene->init();
 }
 
 void SceneManager::draw()
 {
-    if (this->current_scene != nullptr)
-        this->current_scene->draw();
+    if (this->m_current_scene != nullptr)
+        this->m_current_scene->draw();
 }
 
 void SceneManager::update()
 {
-    if (this->current_scene != nullptr)
-        this->current_scene->update();
+    if (this->m_current_scene != nullptr)
+        this->m_current_scene->update();
 }
 
 void SceneManager::destroy()
@@ -46,22 +46,22 @@ void SceneManager::destroy()
 
 void SceneManager::changeScene(const std::string &scene_name)
 {
-    static_cast<LoadingScene *>(this->loading_scene)->setNextScene(scene_name);
-    this->current_scene = this->loading_scene;
-    this->current_scene->init();
+    static_cast<LoadingScene *>(this->m_loading_scene)->setNextScene(scene_name);
+    this->m_current_scene = this->m_loading_scene;
+    this->m_current_scene->init();
 }
 
 Scene *SceneManager::getCurrentScene()
 {
-    return this->current_scene;
+    return this->m_current_scene;
 }
 
 void SceneManager::quitGame()
 {
-    if (this->current_scene != nullptr)
+    if (this->m_current_scene != nullptr)
     {
-        delete this->current_scene;
-        this->current_scene = nullptr;
+        delete this->m_current_scene;
+        this->m_current_scene = nullptr;
     }
 }
 
@@ -72,18 +72,18 @@ void SceneManager::addScene(const std::string &scene_name, Scene *scene)
 
 void SceneManager::setScene(const std::string &scene_name)
 {
-    this->current_scene = this->scenes[scene_name];
-    this->current_scene->init();
+    this->m_current_scene = this->scenes[scene_name];
+    this->m_current_scene->init();
 }
 
 void SceneManager::setCurrentScene(const std::string &scene_name)
 {
-    this->current_scene = this->scenes[scene_name];
+    this->m_current_scene = this->scenes[scene_name];
 }
 
 void SceneManager::setLoadingScene(const std::string &scene_name)
 {
-    this->loading_scene = this->scenes[scene_name];
+    this->m_loading_scene = this->scenes[scene_name];
 }
 
 // Path: src/SceneManager/Scene/Scene.cpp

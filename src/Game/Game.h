@@ -36,17 +36,14 @@ public:
     void destroy();
 
 private:
-    int window_width = 1024;
-    int window_height = 720;
+    int m_window_width = 1024;
+    int m_window_height = 720;
 
-    std::string window_title = "Soul Eater";
-    std::string version = "0.0.1";
+    std::string m_window_title = "Soul Eater";
+    std::string m_version = "0.0.1";
 
-    bool button_pressed = false;
+    bool m_button_pressed = false;
 
-    SceneManager *scene_manager = nullptr;
-    ResourceManager *resource_manager = nullptr;
-    Texture2D *texture = nullptr;
-    Shader shader;
-    RenderTexture2D render_texture;
+    SceneManager *m_scene_manager = nullptr;
+    ResourceManager *m_resource_manager = nullptr;
 };
