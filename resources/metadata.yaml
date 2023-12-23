@@ -1,0 +1,42 @@
+resources:
+  - name: "player"
+    resourceType: "Texture2D"
+    resourcePath: "player.png"
+    textureType: "AnimatedTexture"
+    numberOfAnimations: 6
+    animations:
+      - name: "IDLE"
+        numberOfFrames: 6
+        width: 48
+        height: 48
+        from:
+          x: 0
+          y: 0
+        to:
+          x: 6
+          y: 0
+        type: 0
+
+      - name: "WALK_DOWN"
+        numberOfFrames: 6
+        width: 48
+        height: 48
+        from:
+          x: 0
+          y: 3
+        to:
+          x: 6
+          y: 3
+        type: 0
+
+      - name: "WALK_UP"
+        numberOfFrames: 6
+        width: 48
+        height: 48
+        from:
+          x: 0
+          y: 5
+        to:
+          x: 6
+          y: 5
+        type: 0
