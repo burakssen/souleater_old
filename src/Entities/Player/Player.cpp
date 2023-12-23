@@ -47,21 +47,30 @@ void Player::handleEvents()
     if (transform_component == nullptr)
         return;
 
-    if (IsKeyDown(KEY_W))
+    if(!IsKeyDown(KEY_S) && !IsKeyDown(KEY_W))
     {
-        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y - 1});
-    }
-
-    if (IsKeyDown(KEY_S))
-    {
-        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y + 1});
-        if(animation_component)
-            animation_component->playAnimation("WALK/DOWN");
-    }
-
-    if(IsKeyUp(KEY_S) && IsKeyUp(KEY_W))
-    {
+        Log::info("IDLE");
+        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y});
         if(animation_component)
             animation_component->playAnimation("IDLE");
+
+        return;
     }
+
+    if (IsKeyDown(KEY_W) && IsKeyUp(KEY_S))
+    {
+        Log::info("WALK_UP");
+        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y - 1});
+        if(animation_component)
+            animation_component->playAnimation("WALK_UP");
+    }
+    
+    if (IsKeyDown(KEY_S) && IsKeyUp(KEY_W))
+    {
+        Log::info("WALK_DOWN");
+        transform_component->setPosition(Vector2{transform_component->getPosition().x, transform_component->getPosition().y + 1});
+        if(animation_component)
+            animation_component->playAnimation("WALK_DOWN");
+    }
+
 }
