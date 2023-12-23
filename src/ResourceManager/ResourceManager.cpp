@@ -43,9 +43,7 @@ void ResourceManager::generateResource(const YAML::Node &resource_node)
 
     if (resource_type == "Texture2D")
     {
-        std::cout << "Loading Texture2D: " << resource_name << std::endl;
         int resource_id = rresGetResourceId(this->m_central_dir, resource_path.c_str());
-        std::cout << "Resource ID: " << resource_id << std::endl;
         rresResourceChunk resource_chunk = rresLoadResourceChunk(GAMEDATA_PATH, resource_id);
         Image image = LoadImageFromResource(resource_chunk);
         auto *texture = new Texture2D();
