@@ -16,5 +16,5 @@ public:
     void handleEvents() override;
 
 private:
-    Shader shader;
+    Shader m_shader;
 };
