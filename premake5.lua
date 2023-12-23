@@ -57,18 +57,20 @@ project "souleater"
         os.chdir(rres_dir)
         -- os.execute("mkdir build && cd build && cmake .. && make -j8") -- Adjust the build command based on your platform
         -- os.chdir("../")
+        os.rename(rres_dir .. "/src/", _WORKING_DIR .. "/src/rres")
+        os.writefile_ifnotequal("#pragma warning(disable : 4996)\n#include <raylib.h>\n#define RRES_IMPLEMENTATION\n#include <rres.h>\n#define RRES_RAYLIB_IMPLEMENTATION\n#include <rres-raylib.h>",  _WORKING_DIR .. "/src/rres/rres.c")        
+        
 
         -- Copy necessary files and create rres.c
-        os.execute("cp -r " .. rres_dir .. "/src/ " .. _WORKING_DIR .. "/src/rres/")
-        os.execute("echo '#pragma warning(disable : 4996)\n#include <raylib.h>\n#define RRES_IMPLEMENTATION\n#include <rres.h>\n#define RRES_RAYLIB_IMPLEMENTATION\n#include <rres-raylib.h>' > " .. _WORKING_DIR .. "/src/rres/rres.c")
     end
 
     -- Fetch raygui.h if not found
     if not os.isfile(_WORKING_DIR .. "/src/raygui/raygui.h") then
         print("Fetching raygui.h...")
-        os.execute("mkdir " .. _WORKING_DIR .. "/src/raygui")
+        os.mkdir(_WORKING_DIR .. "/src/raygui")
         os.execute("curl -L https://raw.githubusercontent.com/raysan5/raygui/master/src/raygui.h -o " .. _WORKING_DIR .. "/src/raygui/raygui.h")
-        os.execute("echo '#define RAYGUI_IMPLEMENTATION\n#include <raygui.h>' > " .. _WORKING_DIR .. "/src/raygui/raygui.c")
+        os.touchfile(_WORKING_DIR .. "/src/raygui/raygui.c")
+        os.writefile_ifnotequal("#define RAYGUI_IMPLEMENTATION\n#include <raygui.h>", _WORKING_DIR .. "/src/raygui/raygui.c")        
     end
 
     includedirs
@@ -117,6 +119,7 @@ project "souleater"
     {
         -- Copy resources to output directory after build
         "{COPY} resources %{cfg.targetdir}",
+  
     }
 
     -- Custom target for running the executable
