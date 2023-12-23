@@ -12,7 +12,11 @@ Component::~Component()
 
 void Component::init()
 {
-    uuid_generate(this->m_id);
+    #if defined(_WIN32) || defined(_WIN64)
+        UuidCreate(this->m_id);   
+    #else
+        uuid_generate(this->m_id);
+    #endif
 }
 
 void Component::draw()

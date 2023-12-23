@@ -1,6 +1,12 @@
 #pragma once
 
-#include <uuid/uuid.h>
+#if defined(_WIN32) || defined(_WIN64)
+    #include <Rpc.h>
+    typedef UUID uuid_t;
+#else
+    #include <uuid/uuid.h>
+#endif
+
 #include <string>
 
 #include "../Entities/Entity.h"
