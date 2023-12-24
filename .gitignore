@@ -7,3 +7,5 @@ src/raygui
 src/rres
 Makefile
 souleater.make
+vendor/raygui
+vendor/rres
