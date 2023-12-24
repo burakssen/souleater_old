@@ -1,7 +1,9 @@
-build
+bin-int
 cmake-*
 .idea
 .vscode
 bin
 src/raygui
 src/rres
+Makefile
+souleater.make

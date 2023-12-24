@@ -10,6 +10,8 @@ project "souleater"
     targetdir ("bin/%{cfg.buildcfg}")
     objdir ("bin-int/%{cfg.buildcfg}")
 
+
+
     files
     {
         "src/**.cpp",
@@ -41,6 +43,14 @@ project "souleater"
             "IOKit.framework",
             "CoreVideo.framework",
         }
+
+    filter "configurations:Debug"
+        defines { "DEBUG" }
+        symbols "On"
+      
+    filter "configurations:Release"
+        defines { "NDEBUG" }
+        optimize "On"
     
     filter{}
 

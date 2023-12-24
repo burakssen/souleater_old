@@ -1,4 +1,3 @@
-
 function platform_defines()
     defines{"PLATFORM_DESKTOP"}
 
@@ -79,12 +78,24 @@ end
 
 project "raylib"
     kind "StaticLib"
-
     platform_defines()
-
     location "_build"
     language "C"
     targetdir "bin/"
+
+    configmap {
+        ["Debug"] = "release",
+        ["Release"] = "release"
+    }
+
+    filter "configurations:Debug"
+        defines {"DEBUG"}
+        symbols "On"
+        optimize "Off"
+
+    filter "configurations:Release"
+        defines {"NDEBUG"}
+        optimize "On"
 
     filter "action:vs*"
         defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS"}
@@ -116,10 +127,28 @@ project "yaml-cpp"
     targetdir "bin/"
     location "_build"
 
+    configmap {
+        ["Debug"] = "release",
+        ["Release"] = "release"
+    }
+
     includedirs {
         "yaml-cpp/include"
     }
 
+    filter "configurations:Debug"
+        defines {"DEBUG"}
+        symbols "On"
+        optimize "Off"
+
+    filter "configurations:Release"
+        defines {"NDEBUG"}
+        optimize "On"
+
+    filter{}
+
+
+   
     files {
         "yaml-cpp/src/**.cpp",
         "yaml-cpp/src/**.h"
